@@ -2,9 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Topics</title>
 </head>
 <body>
-$END$
+{% extends "learning_logs/base.html" %}
+
+{% block content %}
+    <p>Temat: {{ topic }}</p>
+
+    <p>Wpisy:</p>
+    <ul>
+        {% for entry in entries %}
+            <li>
+                <p>{{ entry.date_added|date:'d M Y H:i' }}</p>
+                <p>{{ entry.text|linebreaks }}</p>
+            </li>
+        {% empty %}
+            <li>Nie ma zadnego wpisu.</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}
+
 </body>
 </html>

@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Base</title>
 </head>
 <body>
-$END$
+<p>
+    <a href="{% url 'index' %}">Learning Log </a> -
+    <a href="{% url 'topics' %}">Tematy</a>
+</p>
+{% block content %} {% endblock content %}
 </body>
 </html>

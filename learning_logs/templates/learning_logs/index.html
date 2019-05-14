@@ -5,8 +5,13 @@
     <title>Main Site</title>
 </head>
 <body>
-<p>Learning Log</p>
 
-<p>Learning Log pomaga w monitorowaniu postępów w nauce.</p>
+{% extends "learning_logs/base.html" %}
+
+{% block content %}
+
+<p>Learning Log pomaga w monitorowaniu postepow w nauce.</p>
+{%  endblock content %}
+
 </body>
 </html>

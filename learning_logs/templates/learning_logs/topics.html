@@ -2,9 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Topics</title>
 </head>
 <body>
-$END$
+{% extends "learning_logs/base.html" %}
+
+{% block content %}
+    <p>Tematy</p>
+    <ul>
+        {% for topic in topics %}
+            <li>
+                <a href="{% url 'topic' topic.id %}">{{ topic }}</a>
+            </li>
+        {% empty %}
+            <li>Zaden temat nie zostal jeszcze dodany</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}
+
 </body>
 </html>
