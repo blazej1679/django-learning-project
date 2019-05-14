@@ -6,5 +6,8 @@ from . import views
 
 urlpatterns = [
     #strona glowna
-    url(r'^$', views.index, name='index')
+    url(r'^$', views.index, name='index'),
+    #wyswietlenie wszystkich tematow
+    url(r'^topics/$', views.topics, name='topics'),
+    url(r"^topics/(?P<topic_id>\d+)/$", views.topic, name='topic'),
 ]
