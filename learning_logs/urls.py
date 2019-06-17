@@ -22,4 +22,7 @@ urlpatterns = [
 
     path('new_entry/<int:topic_id>/', views.new_entry, name='new_entry'),
     #url(r'^new_entry/(?P<topic_id>\d+)/$', views.new_entry, name='new_entry'),
+
+    #strona do edycji wpisow
+    path('edit_entry/<int:entry_id>/', views.edit_entry, name='edit_entry'),
 ]

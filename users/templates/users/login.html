@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% extends "learning_logs/base.html" %}
+    {% block content %}
+        {% if forms.errors %}
+        <p>Nazwa uzytkownika i hasło sa nieprawidlowe. Prosze sprobowac ponownie.</p>
+        {% endif %}
+
+        <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button name="subject">Zaloguj</button>
+        <input type="hidden" name="next" value="{% url 'index' %}" >
+        </form>
+    {% endblock %}
+</body>
+</html>
