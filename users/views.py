@@ -1,6 +1,5 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.contrib.auth import logout
 from django.shortcuts import render
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -9,12 +8,12 @@ from django.contrib.auth.forms import UserCreationForm
 def logout_view(request):
     """Wylogowanie uzytkownika"""
     logout(request)
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse('learning_logs:index'))
 
 
 def register(request):
     """Rejestrcja nowego użytkownika."""
-    if request != 'POST':
+    if request.method != 'POST':
         form = UserCreationForm()
     else:
         form = UserCreationForm(data=request.POST)

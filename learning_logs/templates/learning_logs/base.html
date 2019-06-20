@@ -12,7 +12,8 @@
         Witaj, {{ user.username }}.
         <a href="{% url 'logout' %}">Wyloguj</a>
     {% else %}
-        <a href="{% url 'login' %}">Zaloguj</a>
+        <a href="{% url 'login' %}">Zaloguj</a> -
+        <a href="{% url 'register' %}">Rejestruj</a>
     {% endif %}
 </p>
 {% block content %} {% endblock content %}
