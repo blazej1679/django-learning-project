@@ -12,23 +12,23 @@ from .models import Topic, Entry
 
 
 def index(request):
-    """Strona glowna aplikacji learning_log."""
+    """Main site learning_log app."""
 
     return render(request, 'learning_logs/index.html')
 
 @login_required
 def topics(request):
-    """Wyswietla wszystkie tematy."""
+    """Shows every Topic."""
     topics = Topic.objects.filter(owner=request.user).order_by('date_added')
     context = {'topics': topics}
     return render(request, 'learning_logs/topics.html', context)
 
 @login_required
 def topic(request, topic_id):
-    """Wyswietla pojedynczy temat i wszytkie wpisy powiazane z nim."""
+    """Shows singe Topic and all corelated Entries."""
     topic = Topic.objects.get(id=topic_id)
 
-    #sprawdzenie, czy topic nalezy do uzytkownika
+    #checking if Topic belongs to User
     if topic.owner != request.user:
         raise Http404
 
@@ -38,12 +38,12 @@ def topic(request, topic_id):
 
 @login_required
 def new_topic(request):
-    """Dodawanie nowego tematu."""
+    """Adding new Topic."""
     if request.method != 'POST':
-        #Nie przekazano zadnych danych, nalezy utworzyc pusty formularz.
+        #Given no data -> creating new empty form.
         form = TopicForm()
     else:
-        #Przekazano dane za pomocą zadania POST
+        #Given data with POST method
         form = TopicForm(request.POST)
         if form.is_valid():
             new_topic = form.save(commit=False)
@@ -56,11 +56,11 @@ def new_topic(request):
 
 @login_required
 def new_entry(request, topic_id):
-    """Dodanie nowego wpisu przynależącego do tematu."""
+    """Adding new Entry in specific Topic."""
     topic = Topic.objects.get(id=topic_id)
 
     if request.method != 'POST':
-        #Nie przekazano zadych danych, tworzenie pustego formularza.
+        #Given no data -> creating new empty form.
         form = EntryForm()
     else:
         form = EntryForm(data=request.POST)
@@ -75,7 +75,7 @@ def new_entry(request, topic_id):
 
 @login_required
 def edit_entry(request, entry_id):
-    """Edycja stniejacego wpisu."""
+    """Edit existing Entry."""
     entry = Entry.objects.get(id=entry_id)
     topic = entry.topic
     if topic.owner != request.user:

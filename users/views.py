@@ -6,13 +6,13 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 def logout_view(request):
-    """Wylogowanie uzytkownika"""
+    """Logout User"""
     logout(request)
     return HttpResponseRedirect(reverse('learning_logs:index'))
 
 
 def register(request):
-    """Rejestrcja nowego użytkownika."""
+    """New User registration."""
     if request.method != 'POST':
         form = UserCreationForm()
     else:
@@ -21,7 +21,7 @@ def register(request):
         if form.is_valid():
             new_user = form.save()
 
-            #Logowanie uzytkownika i przekierowanie na strone glowna.
+            #Log User and go to main site.
             authenticated_user = authenticate(username=new_user.username, password=request.POST['password1'])
             login(request, authenticated_user)
             return HttpResponseRedirect(reverse('index'))

@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 
 class Topic(models.Model):
-    """Temat poznawany przez użtkownika, posiadający poszczegolne wpisy"""
+    """Topic developed by user and having specific entries"""
     text = models.CharField(max_length=200)
     date_added = models.DateTimeField(auto_now_add = True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
